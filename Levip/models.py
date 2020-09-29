@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class Cliente(models.Model):
     CLIE_CEDULA = models.CharField(max_length = 10, primary_key=True)
     CLIE_NOMBRE = models.CharField(max_length=50)
@@ -34,7 +33,7 @@ class Precio(models.Model):
 
 class Item(models.Model):
     IT_ID = models.CharField(max_length = 5, primary_key=True)
-    IT_MEDIDA = models.DecimalField(decimal_places=2)
+    IT_MEDIDA = models.DecimalField(max_digits = 10,  decimal_places=2)
     IT_DESCRIPCION = models.TextField()
     DES_ID = models.ForeignKey(Despachador, on_delete=models.CASCADE)
     ORD_ID = models.ForeignKey(Orden, on_delete=models.CASCADE)
