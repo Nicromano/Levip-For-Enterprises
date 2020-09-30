@@ -3,28 +3,30 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/levip">
-    <img src="{% static "img/levip_icon.svg" %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-    Levip For Enterprises
+        <img src="{% static "img/levip_icon.svg" %}" width="30" height="30" class="d-inline-block align-top" alt=""
+            loading="lazy">
+        Levip For Enterprises
     </a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/levip">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/levip/about">About</a>
-      </li>
-    </ul>
-    <form  class="form-inline my-2 my-lg-0">
-        <button class="btn btn-outline-success my-2 my-sm-0"><a class="text-success text-decoration-none" href="/levip/signin">Sign in</a></button>
-    </form>
-  </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/levip">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/levip/about">About</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0"><a class="text-success text-decoration-none"
+                    href="/levip/signin">Sign in</a></button>
+        </form>
+    </div>
 </nav>
 <div class="container-fluid">
     <div class="row ">
         <div class="col-md-5 my-auto">
-            <div class="m-5 text-center">
-                <img src="{% static "img/sign_in.svg" %}" width="400"  class="img-fluid" alt="Responsive image">
+            <div class="m-5 pl-5 text-center">
+                <img src="{% static "img/sign_in.svg" %}" width="400" class="img-fluid" alt="Responsive image">
                 <div class="text-center">
                     <p class="h-marca">Welcome back</p>
                     <h4 class="text-muted">Log in and start registering your orders</h4>
@@ -36,7 +38,7 @@
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-md-7">
-                        <form action="" method="POST">
+                        <form action="{% url 'login' %}" method="POST">
                             {% csrf_token %}
                             <div class="text-center">
                                 <h3 class="h-marca-signup m-1">Sign in to <span class="marca"> Levip</span> </h3>
@@ -47,39 +49,44 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-lg">Username</span>
                                     </div>
-                                    <input type="text" class="form-control" name="username" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                                    <input type="text" class="form-control" name="username"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                                 </div>
                                 <div class="input-group mt-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-lg">Password</span>
                                     </div>
-                                    <input type="password" class="form-control"  name="password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                                    <input type="password" class="form-control" name="password"
+                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                                 </div>
-                                <div class="profile mt-3">
+                                <!-- <div class="profile mt-3">
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <h5 > <label class=" font-weight-bold text-dark" for="exampleFormControlSelect1">Select a profile</label></h5>
-                                                <select class="form-control" name="rol" id="exampleFormControlSelect1">
+                                                <h5> <label class=" font-weight-bold text-dark"
+                                                        for="exampleFormControlSelect1">Select a profile</label></h5>
+                                                <select class="form-control" id="exampleFormControlSelect1">
                                                     <option>Administrator</option>
                                                     <option>Client</option>
-                                                  <option>Dispatcher</option>
+                                                    <option>Dispatcher</option>
                                                 </select>
-                                              </div>
+                                            </div>
                                         </div>
                                     </div>
-                                 
-                                   
+
+                                </div> -->
+                                <div class="text-center mt-3">
+                                    <div class="forgor ">
+                                        <p><a class="text-decoration-none font-weight-bold text-secondary" href="">Forgot
+                                                your password?</a></p>
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-lg">SIGN UP</button>
                                 </div>
-                                <div class="forgor">
-                                    <p><a class="text-decoration-none font-weight-bold text-secondary" href="">Forgot your password?</a></p>
-                                </div>
-                                <button type="submit" class="btn btn-success btn-lg">SIGN UP</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
