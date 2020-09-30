@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif; 
+}
+.h-marca{
+    font-family: 'Rubik', sans-serif;
+    font-size: 49px;
+}
+.container-form{
+    width: 25%;
+}
+.h-marca-signup{
+    font-family: 'Rubik', sans-serif;
+    font-size: 30px;
+    
+}
+.h-marca-signup > .marca{
+    color: #85F56E;
+}
+
+.h-marca > #punto{
+    font-family: 'Roboto', sans-serif;
+    color: #85F56E;
+
+}
+
+.about{
+    background-image: url('../img/fondo_about.jpg') ;
+
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

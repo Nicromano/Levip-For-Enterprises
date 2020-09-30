@@ -3,4 +3,11 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return HttpResponse('Hello word')
+    return render(request, 'home.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def signin(request):
+    return render(request, 'signin.html')
+
