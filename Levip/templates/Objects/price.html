@@ -30,25 +30,25 @@
             </div>
         </div>
         {% if perms.Levip.view_administrador %}
-          <a href="/levip/administrator" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-shield"></i> Administrator</a>
+          <a href="/levip/dashboard/administrator" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-shield"></i> Administrator</a>
         {% endif %}
         {% if  perms.Levip.view_cliente %}
-          <a href="/levip/customer" class="list-group-item list-group-item-action bg-light"><i class="fas fa-address-card"></i> Customer</a>
+          <a href="/levip/dashboard/customer" class="list-group-item list-group-item-action bg-light"><i class="fas fa-address-card"></i> Customer</a>
         {% endif %}
         {% if  perms.Levip.view_despachador %}
-        <a href="/levip/dispatcher" class="list-group-item list-group-item-action bg-light"><i class="fas fa-people-carry"></i> Dispatcher</a>
+        <a href="/levip/dashboard/dispached" class="list-group-item list-group-item-action bg-light"><i class="fas fa-people-carry"></i> Dispatcher</a>
         {% endif %}
         {% if  perms.Levip.view_precio %}
-        <a href="/levip/price" class="list-group-item list-group-item-action bg-light"><i class="fas fa-tags"></i> Price</a>
+        <a href="/levip/dashboard/price" class="list-group-item list-group-item-action bg-light"><i class="fas fa-tags"></i> Price</a>
         {% endif %}
         {% if  perms.Levip.view_item %}
-        <a href="/levip/item" class="list-group-item list-group-item-action bg-light"><i class="fas fa-gifts"></i> Item</a>
+        <a href="/levip/dashboard/item" class="list-group-item list-group-item-action bg-light"><i class="fas fa-gifts"></i> Item</a>
         {% endif %}
         {% if  perms.Levip.view_pedido %}
-        <a href="/levip/order_ped" class="list-group-item list-group-item-action bg-light"><i class="fas fa-shopping-cart"></i> Order</a>
+        <a href="/levip/dashboard/order_ped" class="list-group-item list-group-item-action bg-light"><i class="fas fa-shopping-cart"></i> Order</a>
         {% endif %}
         {% if  perms.Levip.view_orden %}
-        <a href="/levip/order" class="list-group-item list-group-item-action bg-light"><i class="fas fa-shopping-cart"></i> Order</a>
+        <a href="/levip/dashboard/order" class="list-group-item list-group-item-action bg-light"><i class="fas fa-shopping-cart"></i> Order</a>
         {% endif %}
       </div>
     </div>
@@ -71,8 +71,38 @@
 
       <div class="container-fluid">
         <div class="row justify-content-md-center">
-          <div class="col-md-7 ">
+          <div class="col-md text-center">
+            <h2 class="marca m-3">List of Price</h2>
             
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Initial date</th>
+                  <th scope="col">Final date</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for price in prices %}
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{price.PRE_ID}}</td>
+                  <td>{{price.PRE_VALOR}}</td>
+                  <td>{{price.PRE_FECHA_INICIO}}</td>
+                  <td>{{price.PRE_FECHA_FINAL}}</td>
+                  <td>@mdo</td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+            <div class="text-right m-2">
+              <a class="btn btn-outline-success" href="#" role="button">Create Price</a>
+
+            </div>
           </div>
         </div>
       </div>
