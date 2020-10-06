@@ -71,11 +71,52 @@
 
       <div class="container-fluid">
         <div class="row justify-content-md-center">
-          <div class="col-md-7 ">
-              <div class="img text-center m-5">
-                <img src="{% static "/img/welcome.svg" %}" width="400" alt="Welcome">
-                <h1 class="marca m-2">Welcome to Levip For Enterprises</h1>
-              </div>
+          <div class="col-md text-center">
+            <h2 class="marca m-3">List of Item</h2>
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Weight</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Despachador</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{item.IT_ID}}</td>
+                  <td>{{item.IT_MEDIDA}}</td> 
+                  <td>
+                  {% for price in  prices %}
+                    {% if price.PRE_ID == item.PRE_ID %}
+                    {{price.PRE_VALOR}}
+                    {% endif %}
+                  {% endfor %}
+                  </td>
+                  <td>{{item.IT_DESCRIPCION}}</td>
+                  <td>
+                  {% for des in despachador %}
+                  {% if des.DES_ID == item.DES_ID %}
+                      {{des.DES_NOMBRE}} {{des.DES_APELLIDO}}                  
+                  {% endif %}
+                  {% endfor %}
+                  </td>
+                  <td>@mdo</td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+            <div class="text-right m-2">
+              <a class="btn btn-outline-success" href="#" role="button">Create Item</a>
+
+            </div>
           </div>
         </div>
       </div>

@@ -71,11 +71,36 @@
 
       <div class="container-fluid">
         <div class="row justify-content-md-center">
-          <div class="col-md-7 ">
-              <div class="img text-center m-5">
-                <img src="{% static "/img/welcome.svg" %}" width="400" alt="Welcome">
-                <h1 class="marca m-2">Welcome to Levip For Enterprises</h1>
-              </div>
+          <div class="col-md text-center">
+            <h2 class="marca m-3">List of Administrator</h2>
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for admin in admins %}
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{admin.ADMIN_ID}}</td>
+                  <td>{{admin.ADMIN_USERNAME}}</td>
+                  <td>{{admin.ADMIN_CORREO}}</td>
+                  <td>@mdo</td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+            <div class="text-right m-2">
+              <a class="btn btn-outline-success" href="#" role="button">Create Administrator</a>
+
+            </div>
           </div>
         </div>
       </div>
