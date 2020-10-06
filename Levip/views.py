@@ -7,12 +7,18 @@ from django.contrib.auth.decorators import login_required
 # Rutas que no necesitan protección de rutas
 #
 def index(request):
+    if request.user.username:
+        return redirect('/levip/dashboard') 
     return render(request, 'home.html')
 
 def about(request):
+    if request.user.username:
+        return redirect('/levip/dashboard') 
     return render(request, 'about.html')
 
 def signin(request):
+    if request.user.username:
+        return redirect('/levip/dashboard') 
     return render(request, 'signin.html')
 
 def loginPage(request):
