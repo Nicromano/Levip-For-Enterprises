@@ -102,12 +102,38 @@ def createItem(request):
     except:
         return redirect('/levip/dashboard/createItemView')
 
-def editItemView(request, item):
+def editItemView(request, item_id):
+    request.session['item'] = item_id
+    return render(request, 'formEditItem.html', {'user': Cliente.objects.get(pk=request.session['user']), 'item': Item.objects.get(pk=item_id)})
 
-    return render(request, 'editItem.html', {'user': Cliente.objects.get(pk=request.session['user']), 'items': Item.objects.get(pk=item)})
+def deleteItem(request, item_id):
+    try:
+        request.session['user']
+    except:
+        return redirect('/levip/signin')
 
+    try:
+        i = Item.objects.get(pk=item_id)
+        i.delete()
+        return redirect('/levip/dashboard/item')
+    except:
+        pass
 def editItem(request):
-    pass
-def pedidoPage(request):
-    
+    try:
+        request.session['user']
+    except:
+        return redirect('/levip/signin')
+    try:
+        item = request.session['item']
+        del request.session['item']
+        i = Item.objects.get(pk=item)
+        i.IT_ID = request.POST['ID'][0:5]
+        i.IT_PRECIO = float(request.POST['precio'])
+        i.IT_DESCRIPCION = request.POST['descripcion']
+        i.save()
+    except: 
+        pass
+    return redirect('/levip/dashboard/item')
+
+def pedidoPage(request):  
     return render(request, 'order.html', {'user': Cliente.objects.get(pk=request.session['user']), 'pedidos': Pedido.objects.filter(CLIE_CEDULA__CLIE_CEDULA = request.session['user'])})

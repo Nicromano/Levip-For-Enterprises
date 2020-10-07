@@ -48,35 +48,52 @@
 
       <div class="container-fluid">
         <div class="row justify-content-md-center">
+       
+           {% if orders %}
           <div class="col-md text-center">
-            <h2 class="marca m-3">List of Order</h2>
-            
+          <h2 class="marca m-3">List of Item</h2>
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">ID</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Descripción</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Items</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {% for item in items %}
+                {% for order in orders %}
                 <tr>
                   <th scope="row">1</th>
-                  <td>{{item.IT_ID}}</td>
-                  <td>{{item.IT_PRECIO}}</td>
-                  <td>{{item.IT_DESCIPCION}}</td>
-                  <td>@mdo</td>
+                  <td>{{order.PED_ID}}</td>
+                  <td>{{order.PED_CANTIDAD}}</td>
+                  <td>PEDIDO ITEM</td>
+                  <td>
+                    <a class="btn btn-success text-capitalize" href="/levip/dashboard/editOrderView/{{item.IT_ID}}" role="button"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-danger text-capitalize" href="/levip/dashboard/deleteOrder/{{item.IT_ID}}" role="button"><i class="fas fa-trash"></i></a>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
             <div class="text-right m-2">
-              <a class="btn btn-outline-success text-capitalize" href="/levip/dashboard/createItem" role="button">Create order</a>
+              <a class="btn btn-outline-success text-capitalize" href="/levip/dashboard/createItemView" role="button">Create Order</a>
             </div>
           </div>
+          {% else %}
+          <div class="col-md-7 text-center m-5">
+            <img src="{% static "/img/no_data.svg" %}" width="200" alt="User">
+            <div class="m-2">
+              <h3 class=" marca text-capitalize">There are no added orders yet</h3>
+              <h4 class="text-muted">Do you want to add an order? <h4>
+                <a class="btn btn-outline-success text-capitalize" href="/levip/dashboard/createOrdenView" role="button">Create Order</a>
+            </div>
+          </div>
+            
+          {% endif %}
+           
+         
         </div>
       </div>
     </div>

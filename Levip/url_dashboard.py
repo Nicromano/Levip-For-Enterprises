@@ -6,7 +6,8 @@ urlpatterns = [
     path('item/', views.itemPage),
     path('pedido/', views.pedidoPage),
     path('createItemView/', views.createItemView), 
-    path('editItemView/<int:link_id>', views.editItemView), 
-    path('editItem/', views.editItem), 
+    path('editItemView/<str:item_id>', views.editItemView), 
+    path('deleteItem/<str:item_id>', views.deleteItem), 
+    path('editItem/', views.editItem, name="editItem"), 
     path('createItem/', views.createItem, name='createItem'), 
 ]
