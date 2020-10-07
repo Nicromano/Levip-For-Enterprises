@@ -9,6 +9,6 @@ urlpatterns = [
     path('signup/', RegisterUser.as_view()), 
     path('login/',views.loginPage, name="login"), 
     path('register/',views.signupPage, name="register"), 
-    path('dashboard/', views.dashboard, name="dashboard"), 
+    path('dashboard/', include('Levip.url_dashboard')), 
     path('logout/', views.logoutPage)
 ]

@@ -84,3 +84,9 @@ def dashboard(request):
 def logoutPage(request):
     del request.session['user']
     return redirect('/levip/signin')
+
+def itemPage(request):
+    return render(request, 'item.html', {'user': Cliente.objects.get(pk=request.session['user'])})
+
+def pedidoPage(request):
+    return render(request, 'order.html', {'user': Cliente.objects.get(pk=request.session['user'])})
