@@ -48,8 +48,36 @@
 
       <div class="container-fluid">
         <div class="row justify-content-md-center">
-          <div class="col-md-7 ">
-             
+          <div class="col-md text-center">
+            <h2 class="marca m-3">List of Dispached</h2>
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{item.IT_ID}}</td>
+                  <td>{{item.IT_PRECIO}}</td>
+                  <td>{{item.IT_DESCIPCION}}</td>
+                  <td>@mdo</td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+            <div class="text-right m-2">
+              <a class="btn btn-outline-success text-capitalize" href="#" role="button">Create item</a>
+
+            </div>
           </div>
         </div>
       </div>
