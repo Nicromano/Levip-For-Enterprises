@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+{% load fontawesome_5 %}
+{% fontawesome_5_static %} 
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class=" border-right" id="sidebar-wrapper">
+      <div class=" marca sidebar-heading text-light bg-success">
+          <img src="{% static "img/levip_icon.svg" %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+         Levip For Enterprises</div>
+      <div class="list-group list-group-flush">
+        <div class="list-group-item list-group-item-action bg-light">
+            <div class="row justify-content-md-center">
+                <div class="col-md-5">
+                    <div class="card" style="width: 6rem; height: 6rem; background: #fafafa;">
+                        <div class="card-body">
+                            <img src="{% static "/img/user.png" %}" width="100"  class="card-img-top" alt="User">
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-7">
+                    <h5 class="text-capitalize">{{user.CLIE_USERNAME}} </h5>
+                      <h6 class="text-capitalize text-success">{{user.CLIE_CEDULA}}</h6>
+                </div>
+            </div>
+        </div>
+        <a href="/levip/dashboard/pedido" class="list-group-item list-group-item-action bg-light"><i class="fas fa-shopping-cart"></i> Order</a>
+        <a href="/levip/dashboard/item" class="list-group-item list-group-item-action bg-light"><i class="fas fa-shopping-cart"></i> Item</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+       
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/levip/logout">Logout <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <div class="row justify-content-md-center">
+          <div class="col-md-7 text-center">
+           <form method="POST" action="{% url 'createItem' %}">
+           {% csrf_token %}
+            <div class="text-center">
+                <h3 class="h-marca-signup m-1">Create <span class="marca"> Item</span> </h3>
+            </div>
+            <div class="text-center">
+                <div class="input-group mt-3 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-lg">ID</span>
+                    </div>
+                    <input type="text" class="form-control" name="ID"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                </div>
+                <div class="input-group mt-3 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-lg">Price</span>
+                    </div>
+                    <input type="number" class="form-control" name="precio"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                </div>
+                <div class="input-group mt-3 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-lg">Description</span>
+                    </div>
+                    <textarea name="descripcion"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"  rows="3"></textarea>
+                </div>
+            </div>
+           
+           <div class="text-right m-2">
+              <button class="btn btn-success text-capitalize" type="submit" >Create order</button>
+            </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

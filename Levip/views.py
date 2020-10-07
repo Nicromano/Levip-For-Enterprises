@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from .models import Cliente, Pedido
+from .models import Cliente, Pedido, Item
 # Create your views here.
 #
 # Rutas que no necesitan protección de rutas
@@ -86,7 +86,28 @@ def logoutPage(request):
     return redirect('/levip/signin')
 
 def itemPage(request):
-    return render(request, 'item.html', {'user': Cliente.objects.get(pk=request.session['user'])})
+    return render(request, 'item.html', {'user': Cliente.objects.get(pk=request.session['user']), 'items': Item.objects.all()})
 
+def createItemView(request):
+    return render(request, 'formItem.html', {'user': Cliente.objects.get(pk=request.session['user'])} )
+
+def createItem(request):
+    try:
+        id = request.POST['ID'][0:5]
+        price = float(request.POST['precio'])
+        descripcion = request.POST['descripcion']
+        item = Item(IT_ID = id, IT_PRECIO = price, IT_DESCRIPCION = descripcion)
+        item.save()
+        return redirect('/levip/dashboard/item')
+    except:
+        return redirect('/levip/dashboard/createItemView')
+
+def editItemView(request, item):
+
+    return render(request, 'editItem.html', {'user': Cliente.objects.get(pk=request.session['user']), 'items': Item.objects.get(pk=item)})
+
+def editItem(request):
+    pass
 def pedidoPage(request):
-    return render(request, 'order.html', {'user': Cliente.objects.get(pk=request.session['user'])})
+    
+    return render(request, 'order.html', {'user': Cliente.objects.get(pk=request.session['user']), 'pedidos': Pedido.objects.filter(CLIE_CEDULA__CLIE_CEDULA = request.session['user'])})

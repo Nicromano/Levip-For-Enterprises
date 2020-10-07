@@ -18,4 +18,4 @@ class Pedido(models.Model):
     PED_ID = models.CharField(max_length = 5, primary_key=True)
     PED_CANTIDAD = models.IntegerField()
     CLIE_CEDULA = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    PED_IT = models.ManyToManyField(Item)
+    IT_ID = models.ForeignKey(Item,on_delete=models.CASCADE,  default=None)
