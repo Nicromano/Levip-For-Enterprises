@@ -51,7 +51,7 @@
        
            {% if orders %}
           <div class="col-md text-center">
-          <h2 class="marca m-3">List of Item</h2>
+          <h2 class="marca m-3">List of Order</h2>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -68,17 +68,21 @@
                   <th scope="row">1</th>
                   <td>{{order.PED_ID}}</td>
                   <td>{{order.PED_CANTIDAD}}</td>
-                  <td>PEDIDO ITEM</td>
+                  {% for item in items %}
+                  {% if item.IT_ID == order.IT_ID.IT_ID %}
+                  <td>{{item.IT_NOMBRE}}</td>
+                  {% endif %}
+                  {% endfor %}
                   <td>
-                    <a class="btn btn-success text-capitalize" href="/levip/dashboard/editOrderView/{{item.IT_ID}}" role="button"><i class="fas fa-edit"></i></a>
-                    <a class="btn btn-danger text-capitalize" href="/levip/dashboard/deleteOrder/{{item.IT_ID}}" role="button"><i class="fas fa-trash"></i></a>
+                    <a class="btn btn-success text-capitalize" href="/levip/dashboard/editOrderView/{{order.PED_ID}}" role="button"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-danger text-capitalize" href="/levip/dashboard/deleteOrder/{{order.PED_ID}}" role="button"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
             <div class="text-right m-2">
-              <a class="btn btn-outline-success text-capitalize" href="/levip/dashboard/createItemView" role="button">Create Order</a>
+              <a class="btn btn-outline-success text-capitalize" href="/levip/dashboard/createOrdenView" role="button">Create Order</a>
             </div>
           </div>
           {% else %}

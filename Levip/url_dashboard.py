@@ -9,5 +9,13 @@ urlpatterns = [
     path('editItemView/<str:item_id>', views.editItemView), 
     path('deleteItem/<str:item_id>', views.deleteItem), 
     path('editItem/', views.editItem, name="editItem"), 
-    path('createItem/', views.createItem, name='createItem'), 
+    path('createItem/', views.createItem, name='createItem'),
+    path('createOrden/', views.createOrden, name='createOrden'),
+    path('createOrdenView/', views.createOrdenView), 
+    path('editOrderView/<str:order_id>', views.editOrderView), 
+    path('editOrder/', views.editOrder, name="editOrder"), 
+    path('deleteOrder/<str:order_id>', views.deleteOrder), 
+    
+
+
 ]

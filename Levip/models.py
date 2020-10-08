@@ -11,6 +11,7 @@ class Cliente(models.Model):
 
 class Item(models.Model):
     IT_ID = models.CharField(max_length = 5, primary_key=True)
+    IT_NOMBRE =  models.CharField(max_length=50, default=None) 
     IT_DESCRIPCION =  models.TextField(default=None)
     IT_PRECIO = models.DecimalField(max_digits=10, decimal_places=2, default=None)
 

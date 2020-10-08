@@ -86,25 +86,38 @@ def logoutPage(request):
     return redirect('/levip/signin')
 
 def itemPage(request):
-    return render(request, 'item.html', {'user': Cliente.objects.get(pk=request.session['user']), 'items': Item.objects.all()})
+    try:
+        request.session['user']
+        return render(request, 'item.html', {'user': Cliente.objects.get(pk=request.session['user']), 'items': Item.objects.all()})
+    except:
+        return redirect('/levip/signin')
 
 def createItemView(request):
-    return render(request, 'formItem.html', {'user': Cliente.objects.get(pk=request.session['user'])} )
+    try:
+        request.session['user']
+        return render(request, 'formItem.html', {'user': Cliente.objects.get(pk=request.session['user'])} )
+    except:
+        return redirect('/levip/signin')
 
 def createItem(request):
     try:
         id = request.POST['ID'][0:5]
         price = float(request.POST['precio'])
         descripcion = request.POST['descripcion']
-        item = Item(IT_ID = id, IT_PRECIO = price, IT_DESCRIPCION = descripcion)
+        name = request.POST['name']
+        item = Item(IT_ID = id, IT_NOMBRE = name,  IT_PRECIO = price, IT_DESCRIPCION = descripcion)
         item.save()
         return redirect('/levip/dashboard/item')
     except:
         return redirect('/levip/dashboard/createItemView')
 
 def editItemView(request, item_id):
-    request.session['item'] = item_id
-    return render(request, 'formEditItem.html', {'user': Cliente.objects.get(pk=request.session['user']), 'item': Item.objects.get(pk=item_id)})
+    try:
+        request.session['user']
+        request.session['item'] = item_id
+        return render(request, 'formEditItem.html', {'user': Cliente.objects.get(pk=request.session['user']), 'item': Item.objects.get(pk=item_id)})
+    except:
+        return redirect('/levip/signin')
 
 def deleteItem(request, item_id):
     try:
@@ -118,6 +131,7 @@ def deleteItem(request, item_id):
         return redirect('/levip/dashboard/item')
     except:
         pass
+
 def editItem(request):
     try:
         request.session['user']
@@ -128,6 +142,7 @@ def editItem(request):
         del request.session['item']
         i = Item.objects.get(pk=item)
         i.IT_ID = request.POST['ID'][0:5]
+        i.IT_NAME = request.POST['name']
         i.IT_PRECIO = float(request.POST['precio'])
         i.IT_DESCRIPCION = request.POST['descripcion']
         i.save()
@@ -135,5 +150,68 @@ def editItem(request):
         pass
     return redirect('/levip/dashboard/item')
 
+
+
+def createOrden(request):
+    try: 
+        request.session['user']
+    except:
+        return redirect('/levip/signin')
+    id = request.POST['ID']
+    cantidad = request.POST['cantidad']
+    item= Item.objects.get(pk=request.POST['item'])
+    user = Cliente.objects.get(pk=request.session['user'])
+    p = Pedido(PED_ID = id, PED_CANTIDAD = cantidad, CLIE_CEDULA = user, IT_ID = item)
+    p.save()
+    return redirect('/levip/dashboard/pedido')
+
+def createOrdenView(request):
+    try:
+        request.session['user']
+    except:
+        return redirect('/levip/signin')
+    return render(request, 'formOrder.html', {'user': Cliente.objects.get(pk=request.session['user']), 'items': Item.objects.all()})
+
+
+def editOrder(request): 
+    try:
+        request.session['user']
+    except:
+        return redirect('/levip/signin')
+    pedido = Pedido.objects.get(pk= request.session['order'])
+    del request.session['order']
+    pedido.PED_ID = request.POST['ID']
+    pedido.PED_CANTIDAD = request.POST['cantidad']
+    item = Item.objects.get(pk=request.POST['item'])
+    pedido.IT_ID = item
+    pedido.save()
+    return redirect('/levip/dashboard/pedido')
+
+def editOrderView(request, order_id):  
+    try:
+        request.session['user']
+    except:
+        return redirect('/levip/signin')
+    request.session['order'] = order_id
+    return render(request, 'formEditOrder.html', {'user': Cliente.objects.get(pk=request.session['user']), 'pedido': Pedido.objects.get(pk=order_id), 'items': Item.objects.all()})
+    
+
+def deleteOrder(request, order_id):  
+    try:
+        request.session['user']
+    except:
+        return redirect('/levip/signin')
+    
+    o = Pedido.objects.get(pk = order_id)
+    o.delete()
+    return redirect('/levip/dashboard/pedido')
+
+
 def pedidoPage(request):  
-    return render(request, 'order.html', {'user': Cliente.objects.get(pk=request.session['user']), 'pedidos': Pedido.objects.filter(CLIE_CEDULA__CLIE_CEDULA = request.session['user'])})
+    try:
+        request.session['user']
+        print(Pedido.objects.filter(CLIE_CEDULA__CLIE_CEDULA = request.session['user']))
+        return render(request, 'order.html', {'user': Cliente.objects.get(pk=request.session['user']), 'orders': Pedido.objects.filter(CLIE_CEDULA__CLIE_CEDULA = request.session['user']), 'items': Item.objects.all()})
+    except:
+        return redirect('/levip/signin')
+

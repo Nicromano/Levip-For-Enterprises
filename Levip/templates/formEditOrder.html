@@ -48,54 +48,46 @@
 
       <div class="container-fluid">
         <div class="row justify-content-md-center">
-          
-          {% if items%}
-          <div class="col-md text-center">
-          <h2 class="marca m-3">List of Item</h2>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in items %}
-                <tr>
-                  <th scope="row">1</th>
-                  <td>{{item.IT_ID}}</td>
-                  <td>{{item.IT_NOMBRE}}</td>
-                  <td>{{item.IT_PRECIO}}</td>
-                  <td>{{item.IT_DESCRIPCION}}</td>
-                  <td>
-                    <a class="btn btn-success text-capitalize" href="/levip/dashboard/editItemView/{{item.IT_ID}}" role="button"><i class="fas fa-edit"></i></a>
-                    <a class="btn btn-danger text-capitalize" href="/levip/dashboard/deleteItem/{{item.IT_ID}}" role="button"><i class="fas fa-trash"></i></a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-            <div class="text-right m-2">
-              <a class="btn btn-outline-success text-capitalize" href="/levip/dashboard/createItemView" role="button">Create item</a>
+          <div class="col-md-7 text-center">
+           <form method="POST" action="{% url 'editOrder' %}">
+           {% csrf_token %}
+            <div class="text-center">
+                <h3 class="h-marca-signup m-1">Edit <span class="marca"> Orden</span> </h3>
             </div>
-          </div>
-          {% else %}
-          <div class="col-md-7 text-center m-5">
-            <img src="{% static "/img/no_data.svg" %}" width="200" alt="User">
-            <div class="m-2">
-              <h3 class=" marca text-capitalize">There are no added items yet</h3>
-              <h4 class="text-muted">Do you want to add an item? <h4>
-                <a class="btn btn-outline-success text-capitalize" href="/levip/dashboard/createItemView" role="button">Create item</a>
+            <div class="text-center">
+                <div class="input-group mt-3 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"  id="inputGroup-sizing-lg">ID</span>
+                    </div>
+                    <input type="text" class="form-control" name="ID" value="{{pedido.PED_ID}}"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                </div>
+                <div class="input-group mt-3 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-lg">Quantity</span>
+                    </div>
+                    <input type="number" class="form-control" name="cantidad" value="{{pedido.PED_CANTIDAD}}"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                </div>
+
+                <div class="input-group mt-3 ">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select Item</label>
+                        <select class="form-control" name="item"  id="exampleFormControlSelect1">
+                        {% for item in items  %}
+                                <option value="{{item.IT_ID}}">{{item.IT_NOMBRE}}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
+           <div class="text-right m-2">
+              <button class="btn btn-success text-capitalize" type="submit" >Edit order</button>
+            </div>
+            </form>
             
-          {% endif %}
-           
-         
+          </div>
         </div>
       </div>
     </div>
