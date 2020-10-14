@@ -83,7 +83,11 @@
                 </div>
             </div>
            <div class="text-right m-2">
+            {% if items  %}
               <button class="btn btn-success text-capitalize" type="submit" >Create order</button>
+            {% esle %}
+              <button class="btn btn-success disabled text-capitalize" type="submit" >Create order</button>
+            {% endif %}
             </div>
             </form>
             
