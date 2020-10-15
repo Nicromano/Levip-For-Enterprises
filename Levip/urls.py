@@ -1,6 +1,5 @@
 from django.urls import path, include
 from . import views
-from .view_class import RegisterUser
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -10,5 +9,5 @@ urlpatterns = [
     path('login/',views.loginPage, name="login"), 
     path('register/',views.signupPage, name="register"), 
     path('dashboard/', include('Levip.url_dashboard')), 
-    path('logout/', views.logoutPage)
+    path('logout/', views.logoutPage), 
 ]
