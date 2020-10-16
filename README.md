@@ -2,11 +2,10 @@
 
 Antes de su ejecución se necesita instalar algunas dependencias que utiliza el proyecto en desarrollo
 
-## Instalación de Django
+### Instalación de Django
 
 `
 pip install Django==3.1.2
-
 `
 
 ### Instalación de Boostraps
